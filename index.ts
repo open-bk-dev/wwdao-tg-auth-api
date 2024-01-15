@@ -1,9 +1,9 @@
 import { ethers } from "ethers";
 
-import { dbConnected } from "../Database";
+import { dbConnected } from "./db-connect/dbConnect";
 
-import User from "../Database/models/User";
-import SecuredLinks from "../Database/models/SecuredLinks";
+import User from "../db-models/User";
+import SecuredLinks from "../db-models/SecuredLinks";
 
 export async function RunTgAuthAPI(bot:any){
 
@@ -14,7 +14,7 @@ export async function RunTgAuthAPI(bot:any){
             console.log("Invalid Link.");
             return false;
         }
-
+        
         let expired = parseInt(securedLink?.expiry) <= Date.now();
         
         if(expired){
@@ -112,7 +112,6 @@ export async function RunTgAuthAPI(bot:any){
         }
 
     }
-
 
     Bun.serve({
         port: 8080,
@@ -307,5 +306,6 @@ export async function RunTgAuthAPI(bot:any){
             return new Response("404!");
         }
     });
-
 }
+
+await RunTgAuthAPI("");
