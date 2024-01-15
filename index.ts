@@ -2,8 +2,8 @@ import { ethers } from "ethers";
 
 import { dbConnected } from "./db-connect/dbConnect";
 
-import User from "../db-models/User";
-import SecuredLinks from "../db-models/SecuredLinks";
+import User from "./db-models/User";
+import SecuredLinks from "./db-models/SecuredLinks";
 
 export async function RunTgAuthAPI(bot:any){
 
@@ -306,6 +306,8 @@ export async function RunTgAuthAPI(bot:any){
             return new Response("404!");
         }
     });
+
+    console.log("API is running on port 8080")
 }
 
 await RunTgAuthAPI("");
