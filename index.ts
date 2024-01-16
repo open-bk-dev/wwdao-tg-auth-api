@@ -114,7 +114,7 @@ export async function RunTgAuthAPI(bot:any){
     }
 
     Bun.serve({
-        port: 8080,
+        port: Bun.env.PORT || 8003,
         async fetch(req) {
             const url = new URL(req.url);
             if (url.pathname === "/" && req.method == "GET"){
@@ -307,7 +307,7 @@ export async function RunTgAuthAPI(bot:any){
         }
     });
 
-    console.log("API is running on port 8080")
+    console.log(`API is running on port ${Bun.env.PORT || 8080}`)
 }
 
 await RunTgAuthAPI("");
