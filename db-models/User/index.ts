@@ -1,36 +1,31 @@
 import { Document, Schema, model } from 'mongoose';
 import { AllRoles } from '../../config/AllRoles';
 
-
 export interface IUser extends Document {
   tg: String
   account: String
-  authNonce: String
-  isAuthenticate: Boolean
+  username: String
   authenticationWebToken: String
   role: String
   subscribedEvents: Schema.Types.ObjectId
 }
-
 const userSchema = new Schema<IUser>(
   {
     tg: {
       type: String,
-      required: true,
-      unique: true,
     },
     account: {
       type: String,
-      required: false,
+      required: true,
       maxlength: 42,
       minlength: 42,
+      unique: true
+    },
+    username: {
+      type: String,
+      required: false,
+      maxlength: 30,
       default: null
-    },
-    authNonce: {
-      type: String
-    },
-    isAuthenticate: {
-      type: Boolean,
     },
     authenticationWebToken: {
       type: String,
